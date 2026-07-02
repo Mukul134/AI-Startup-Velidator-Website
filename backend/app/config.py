@@ -1,6 +1,6 @@
 import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field
+from pydantic import AliasChoices, Field
 
 class Settings(BaseSettings):
     # App Settings
@@ -12,8 +12,14 @@ class Settings(BaseSettings):
     DATABASE_URL: str = Field(..., validation_alias="DATABASE_URL")
     
     # Supabase (Auth and Storage)
-    SUPABASE_URL: str = Field(..., validation_alias="SUPABASE_URL")
-    SUPABASE_SERVICE_KEY: str = Field(..., validation_alias="SUPABASE_SERVICE_KEY")
+    SUPABASE_URL: str = Field(
+        ...,
+        validation_alias=AliasChoices("SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_URL"),
+    )
+    SUPABASE_SERVICE_KEY: str = Field(
+        ...,
+        validation_alias=AliasChoices("SUPABASE_SERVICE_KEY", "SUPABASE_SECRET_KEY"),
+    )
     SUPABASE_JWT_SECRET: str = Field(..., validation_alias="SUPABASE_JWT_SECRET")
     
     # LLMs
