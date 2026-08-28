@@ -1,6 +1,7 @@
 # AI Startup Validator
 
 An AI-powered multi-agent startup validation platform designed to analyze startup ideas, target markets, budgets, and customer segments, and produce professional validation reports.
+
 ## live on ##
 **https://ai-startup-velidator-website.vercel.app/**
 
